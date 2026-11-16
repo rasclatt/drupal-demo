@@ -1,0 +1,41 @@
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Dependencies
+/web/core                # Symlink to vendor/drupal/core (not version controlled)
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
+/vendor/
+node_modules/
+/vendor/drupal/autoload.php  # Wrapper file for install.php compatibility
+
+# Files
+/files/
+/web/sites/default/files/
+/web/sites/*/files/
+
+# Settings
+/web/sites/default/settings.php
+/web/sites/default/settings.local.php
+/web/sites/*/settings.local.php
+
+# Services
+/web/sites/default/services.yml
+
+# Drush backup
+drush-backups/
+
+# Composer
+composer.lock
+
+# Drupal
+/web/sites/default/files/
+.env
+.env.local

@@ -1,0 +1,82 @@
+╔════════════════════════════════════════════════════════════════════╗
+║                  DRUPAL INSTALLATION - QUICK START                ║
+╚════════════════════════════════════════════════════════════════════╝
+
+✅ SYSTEM STATUS: READY FOR INSTALLATION
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 1: Open Browser
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Navigate to:
+👉 http://localhost/core/install.php
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+STEP 2: Follow Installation Wizard
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+The installer will:
+  1. Choose Language → Select "English" → Continue
+  2. Choose Profile → Select "Standard" → Continue
+  3. Database settings should auto-populate:
+     • Database name: drupal
+     • Database username: drupal
+     • Database password: drupal
+     • Host: mysql
+  4. Configure Site:
+     • Site name: (your choice)
+     • Email: admin@example.com
+     • Username: admin
+     • Password: (strong password)
+  5. Complete Installation
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AFTER INSTALLATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Admin Panel:      http://localhost/admin
+User Login:       http://localhost/user
+PhpMyAdmin:       http://localhost:8081
+
+Development Folders:
+  • Custom Modules:  /web/modules/custom/
+  • Custom Themes:   /web/themes/custom/
+  • Site Config:     /web/sites/default/
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+DATABASE CREDENTIALS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Host:     mysql (localhost:3306)
+Database: drupal
+User:     drupal
+Pass:     drupal
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTAINER MANAGEMENT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+View Logs:
+  docker-compose logs drupal -f
+
+Restart Containers:
+  docker-compose restart
+
+Stop Containers:
+  docker-compose down
+
+Start Containers:
+  docker-compose up -d
+
+Access Shell:
+  docker-compose exec drupal bash
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 Ready to go! Start at: http://localhost/core/install.php
+

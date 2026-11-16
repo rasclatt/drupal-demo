@@ -1,0 +1,83 @@
+version: '3.8'
+
+services:
+  drupal:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: drupal_web
+    depends_on:
+      mysql:
+        condition: service_healthy
+    env_file:
+      - .env
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./web:/opt/drupal/web
+      - ./vendor:/opt/drupal/vendor
+      - ./modules:/opt/drupal/modules
+      - ./themes:/opt/drupal/themes
+      - ./files:/opt/drupal/web/sites/default/files
+    working_dir: /opt/drupal
+    environment:
+      DRUPAL_DATABASE_HOST: mysql
+      DRUPAL_DATABASE_PORT: 3306
+      DRUPAL_DATABASE_NAME: drupal
+      DRUPAL_DATABASE_USER: drupal
+      DRUPAL_DATABASE_PASSWORD: drupal_password
+      DRUPAL_HASH_SALT: changeme_in_production
+    networks:
+      - drupal_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  mysql:
+    image: mysql:8.0
+    container_name: drupal_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: drupal
+      MYSQL_USER: drupal
+      MYSQL_PASSWORD: drupal_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - drupal_network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: drupal_phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - "8081:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: drupal
+      PMA_PASSWORD: drupal_password
+      PMA_ROOT_PASSWORD: root_password
+    networks:
+      - drupal_network
+    restart: unless-stopped
+
+volumes:
+  mysql_data:
+
+networks:
+  drupal_network:
+    driver: bridge
